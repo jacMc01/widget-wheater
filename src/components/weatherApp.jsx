@@ -34,21 +34,49 @@ const WeatherApp = () => {
 
   return(
     <>
-      <WeatherForm onChangeCity={handleChangeCity} />
-      <div className="info bg-gray-100 p-6 rounded-lg shadow-md">
-        {weather? (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Weather Info:</h3>
-            <img src={weather.current.condition.icon} alt="Weather Icon" className="w-32 h-32 mx-auto mb-4" />
-            <div className="text-center">
-              <p className="text-lg font-semibold mb-2">Temperature: {weather.current.temp_c}°C</p>
-              <p className="text-lg font-semibold">Feels Like: {weather.current.feelslike_c}°C</p>
-            </div>
+    <div className={`flex flex-col items-center min-h-screen ${
+        weather
+          ? {
+              Sunny: "bg-gradient-to-b from-yellow-200 to-orange-300",
+              "Partly cloudy": "bg-gradient-to-t from-blue-300 to-blue-100",
+              Cloudy: "bg-gradient-to-t from-gray-400 to-gray-200",
+              Rainy: "bg-gradient-to-b from-blue-400 to-blue-200",
+              Clear: "bg-gradient-to-t from-blue-500 to-cyan-300", // New "Clear" condition
+            }[weather.current.condition.text]
+          : "bg-gray-100"
+      }`}>
+          <WeatherForm onChangeCity={handleChangeCity} />
+
+          <div className="bg-white p-8 rounded-lg shadow-lg mt-8 max-w-md w-full">
+            {weather ? (
+              <div className="flex flex-col items-center">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                  Weather in {weather.location.name}, {weather.location.country}
+                </h2>
+                <img 
+                  src={weather.current.condition.icon} 
+                  alt="Weather Icon" 
+                  className="w-40 h-40 mb-4" 
+                />
+                <div className="text-center space-y-2">
+                  <p className="text-4xl font-bold text-gray-800">
+                    {weather.current.temp_c}°C
+                  </p>
+                  <p className="text-lg text-gray-600">
+                    Feels like {weather.current.feelslike_c}°C
+                  </p>
+                  <p className="text-lg text-gray-600">
+                    {weather.current.condition.text}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">
+                No weather information available
+              </p>
+            )}
           </div>
-        ) : (
-          <p className="text-center text-gray-500">No weather information available</p>
-        )}
-      </div>
+        </div>
     </>
   )
 }

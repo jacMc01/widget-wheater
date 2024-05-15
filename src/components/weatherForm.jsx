@@ -22,7 +22,7 @@ const WeatherForm = ({onChangeCity}) => {
   return(
     <>
       <form onSubmit={handledSubmit} className="space-y-4">
-        <div className="flex items-center space-x-2">
+        <div className="flex justify-center items-center space-x-2 pt-10 pb-11">
           <label htmlFor="city-input" className="block text-sm font-medium text-gray-700">Enter City:</label>
           <input
             type="text"
@@ -30,10 +30,9 @@ const WeatherForm = ({onChangeCity}) => {
             onChange={onChange}
             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           />
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Submit
-        </button>
+
       </form>
     </>
   )
