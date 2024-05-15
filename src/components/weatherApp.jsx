@@ -34,14 +34,15 @@ const WeatherApp = () => {
 
   return(
     <>
-    <div className={`flex flex-col items-center min-h-screen ${
+    <div       className={`flex flex-col items-center min-h-screen ${
         weather
           ? {
               Sunny: "bg-gradient-to-b from-yellow-200 to-orange-300",
               "Partly cloudy": "bg-gradient-to-t from-blue-300 to-blue-100",
               Cloudy: "bg-gradient-to-t from-gray-400 to-gray-200",
               Rainy: "bg-gradient-to-b from-blue-400 to-blue-200",
-              Clear: "bg-gradient-to-t from-blue-500 to-cyan-300", // New "Clear" condition
+              Clear: "bg-gradient-to-t from-blue-500 to-cyan-300",
+              "Patchy rain nearby": "bg-gradient-to-b from-gray-300 via-blue-200 to-gray-300"
             }[weather.current.condition.text]
           : "bg-gray-100"
       }`}>
